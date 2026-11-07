@@ -403,19 +403,11 @@ img {
 
 .about-text p {
     margin-bottom: 15px;
-    color: var(--text-muted);
+    color: #9bdbf8;
 }
 
-.npwp-box {
-    margin-top: 20px;
-    padding: 12px 15px;
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-left: 4px solid var(--secondary-color);
-    border-radius: 4px;
-    font-size: 0.95rem;
-    backdrop-filter: blur(5px);
-}
+
+
 
 /* --- Services Section --- */
 .services-grid {
@@ -477,7 +469,7 @@ img {
 
 .card-body p {
     font-size: 0.9rem;
-    color: var(--text-muted);
+    color: #add3e7;
 }
 
 /* --- Shopee Testimonials Section --- */
