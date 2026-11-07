@@ -47,17 +47,8 @@ body {
 }
 
 /* --- Global Animasi Background Seluruh Halaman --- */
-.global-animation-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: linear-gradient(135deg, #1d3557, #457b9d, #0f172a);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-    z-index: -99;
-}
+
+
 
 body.dark-mode .global-animation-bg {
     background: linear-gradient(135deg, #090d16, #1e293b, #090d16);
@@ -65,55 +56,41 @@ body.dark-mode .global-animation-bg {
     animation: gradientBG 15s ease infinite;
 }
 
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
+
 
 /* Partikel Bergerak di Seluruh Halaman */
-.page-particles {
+/* Background Animasi Jaringan Konstelasi Cyan */
+.global-animation-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg, #07111f, #0b1b2d, #06101d);
+    z-index: -99;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+#constellationCanvas {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    display: block;
     pointer-events: none;
 }
 
-.particle {
-    position: absolute;
-    display: block;
-    list-style: none;
-    width: 20px;
-    height: 20px;
-    background: rgba(255, 255, 255, 0.90);
-    bottom: -150px;
-    border-radius: 50%;
-    animation: animateParticles 22s linear infinite;
+body.dark-mode .global-animation-bg {
+    background: linear-gradient(135deg, #020812, #071321, #020812);
 }
 
-.particle:nth-child(1) { left: 10%; width: 35px; height: 35px; animation-duration: 16s; }
-.particle:nth-child(2) { left: 25%; width: 20px; height: 20px; animation-duration: 20s; animation-delay: 2s; }
-.particle:nth-child(3) { left: 40%; width: 50px; height: 50px; animation-duration: 14s; animation-delay: 4s; }
-.particle:nth-child(4) { left: 60%; width: 25px; height: 25px; animation-duration: 24s; animation-delay: 1s; }
-.particle:nth-child(5) { left: 75%; width: 30px; height: 30px; animation-duration: 18s; animation-delay: 3s; }
-.particle:nth-child(6) { left: 88%; width: 45px; height: 45px; animation-duration: 19s; animation-delay: 2.5s; }
-.particle:nth-child(7) { left: 95%; width: 15px; height: 15px; animation-duration: 12s; animation-delay: 5s; }
 
-@keyframes animateParticles {
-    0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 0.8;
-        border-radius: 0;
-    }
-    100% {
-        transform: translateY(-1100px) rotate(720deg);
-        opacity: 0;
-        border-radius: 50%;
-    }
-}
+
+
+
+
 
 a {
     text-decoration: none;

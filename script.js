@@ -1,4 +1,254 @@
 document.addEventListener('DOMContentLoaded', () => {
+        /* ===================================================
+       0. ANIMASI JARINGAN KONSTELASI CYAN
+       =================================================== */
+
+    const constellationCanvas = document.getElementById(
+        'constellationCanvas'
+    );
+
+    const ctx = constellationCanvas.getContext('2d');
+
+    let particles = [];
+    let animationFrame;
+
+    const particleConfig = {
+        count: 100,
+        maxDistance: 150,
+        speed: 0.45,
+        color: '0, 255, 255'
+    };
+
+    let canvasWidth = window.innerWidth;
+    let canvasHeight = window.innerHeight;
+
+    // Mengatur ukuran canvas sesuai layar
+    function resizeConstellationCanvas() {
+
+        const pixelRatio = Math.min(
+            window.devicePixelRatio || 1,
+            2
+        );
+
+        canvasWidth = window.innerWidth;
+        canvasHeight = window.innerHeight;
+
+        constellationCanvas.width =
+            canvasWidth * pixelRatio;
+
+        constellationCanvas.height =
+            canvasHeight * pixelRatio;
+
+        constellationCanvas.style.width =
+            canvasWidth + 'px';
+
+        constellationCanvas.style.height =
+            canvasHeight + 'px';
+
+        ctx.setTransform(
+            pixelRatio,
+            0,
+            0,
+            pixelRatio,
+            0,
+            0
+        );
+
+        createParticles();
+    }
+
+    // Membuat partikel konstelasi
+    class ConstellationParticle {
+
+        constructor() {
+
+            this.x = Math.random() * canvasWidth;
+            this.y = Math.random() * canvasHeight;
+
+            this.radius = Math.random() * 1.8 + 0.8;
+
+            this.speedX =
+                (Math.random() - 0.5) *
+                particleConfig.speed;
+
+            this.speedY =
+                (Math.random() - 0.5) *
+                particleConfig.speed;
+
+            this.opacity =
+                Math.random() * 0.5 + 0.4;
+        }
+
+        // Menggerakkan partikel
+        update() {
+
+            this.x += this.speedX;
+            this.y += this.speedY;
+
+            // Partikel muncul kembali dari sisi berlawanan
+            if (this.x > canvasWidth) {
+                this.x = 0;
+            }
+
+            if (this.x < 0) {
+                this.x = canvasWidth;
+            }
+
+            if (this.y > canvasHeight) {
+                this.y = 0;
+            }
+
+            if (this.y < 0) {
+                this.y = canvasHeight;
+            }
+        }
+
+        // Menggambar titik cyan
+        draw() {
+
+            ctx.beginPath();
+
+            ctx.arc(
+                this.x,
+                this.y,
+                this.radius,
+                0,
+                Math.PI * 2
+            );
+
+            ctx.fillStyle =
+                `rgba(${particleConfig.color}, ${this.opacity})`;
+
+            ctx.shadowBlur = 12;
+
+            ctx.shadowColor = '#00ffff';
+
+            ctx.fill();
+
+            ctx.shadowBlur = 0;
+        }
+    }
+
+    // Membuat kumpulan partikel
+    function createParticles() {
+
+        particles = [];
+
+        const particleCount =
+            window.innerWidth < 768
+                ? 55
+                : particleConfig.count;
+
+        for (let i = 0; i < particleCount; i++) {
+
+            particles.push(
+                new ConstellationParticle()
+            );
+        }
+    }
+
+    // Menghubungkan partikel yang berdekatan
+    function drawConnections() {
+
+        for (let i = 0; i < particles.length; i++) {
+
+            for (
+                let j = i + 1;
+                j < particles.length;
+                j++
+            ) {
+
+                const particleA = particles[i];
+                const particleB = particles[j];
+
+                const dx =
+                    particleA.x - particleB.x;
+
+                const dy =
+                    particleA.y - particleB.y;
+
+                const distance = Math.sqrt(
+                    dx * dx + dy * dy
+                );
+
+                // Hanya menghubungkan partikel yang dekat
+                if (
+                    distance <
+                    particleConfig.maxDistance
+                ) {
+
+                    const opacity =
+                        1 -
+                        distance /
+                        particleConfig.maxDistance;
+
+                    ctx.beginPath();
+
+                    ctx.moveTo(
+                        particleA.x,
+                        particleA.y
+                    );
+
+                    ctx.lineTo(
+                        particleB.x,
+                        particleB.y
+                    );
+
+                    ctx.strokeStyle =
+                        `rgba(${particleConfig.color}, ${opacity * 0.35})`;
+
+                    ctx.lineWidth = 0.7;
+
+                    ctx.shadowBlur = 5;
+
+                    ctx.shadowColor = '#00ffff';
+
+                    ctx.stroke();
+
+                    ctx.shadowBlur = 0;
+                }
+            }
+        }
+    }
+
+    // Animasi utama
+    function animateConstellation() {
+
+        ctx.clearRect(
+            0,
+            0,
+            canvasWidth,
+            canvasHeight
+        );
+
+        // Update posisi partikel
+        particles.forEach(particle => {
+
+            particle.update();
+
+            particle.draw();
+
+        });
+
+        // Menggambar jaringan konstelasi
+        drawConnections();
+
+        animationFrame =
+            requestAnimationFrame(
+                animateConstellation
+            );
+    }
+
+    // Menyesuaikan ukuran layar
+    window.addEventListener(
+        'resize',
+        resizeConstellationCanvas
+    );
+
+    // Inisialisasi animasi
+    resizeConstellationCanvas();
+
+    animateConstellation();
 
     /* ===================================================
        1. Dark / Light Mode Toggle
