@@ -12,12 +12,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let particles = [];
     let animationFrame;
 
-    const particleConfig = {
-        count: 100,
-        maxDistance: 150,
-        speed: 0.45,
-        color: '0, 255, 255'
-    };
+    
+const particleConfig = {
+    count: 170,
+    maxDistance: 145,
+    speed: 0.55,
+    color: '0, 255, 255'
+};
+
 
     let canvasWidth = window.innerWidth;
     let canvasHeight = window.innerHeight;
@@ -135,9 +137,9 @@ document.addEventListener('DOMContentLoaded', () => {
         particles = [];
 
         const particleCount =
-            window.innerWidth < 768
-                ? 55
-                : particleConfig.count;
+    window.innerWidth < 768
+        ? 65
+        : particleConfig.count;
 
         for (let i = 0; i < particleCount; i++) {
 
@@ -250,32 +252,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     animateConstellation();
 
-    /* ===================================================
-       1. Dark / Light Mode Toggle
-       =================================================== */
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = themeToggle.querySelector('i');
+    
+/* ===================================================
+   1. MODE GELAP PERMANEN
+   =================================================== */
 
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        document.body.classList.add('dark-mode');
-        themeIcon.classList.remove('fa-moon');
-        themeIcon.classList.add('fa-sun');
-    }
+// Website selalu menggunakan mode gelap
+document.body.classList.add('dark-mode');
 
-    themeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        
-        if (document.body.classList.contains('dark-mode')) {
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            themeIcon.classList.remove('fa-sun');
-            themeIcon.classList.add('fa-moon');
-            localStorage.setItem('theme', 'light');
-        }
-    });
 
 
     /* ===================================================
