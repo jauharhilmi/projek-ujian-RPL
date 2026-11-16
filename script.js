@@ -1,361 +1,44 @@
+
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* ===================================================
-       0. ANIMASI JARINGAN KONSTELASI CYAN
-       =================================================== */
-
-    const constellationCanvas = document.getElementById(
-        'constellationCanvas'
-    );
-
-    // Pastikan canvas tersedia
-    if (constellationCanvas) {
-
-        const ctx = constellationCanvas.getContext('2d');
-
-        let particles = [];
-        let animationFrame = null;
-
-        const particleConfig = {
-            count: 100,
-            maxDistance: 200,
-            speed: 0.4,
-            color: '0, 255, 255'
-        };
-
-        let canvasWidth = window.innerWidth;
-        let canvasHeight = window.innerHeight;
-
-        // Mengatur ukuran canvas sesuai layar
-        function resizeConstellationCanvas() {
-
-            const pixelRatio = Math.min(
-                window.devicePixelRatio || 1,
-                2
-            );
-
-            canvasWidth = window.innerWidth;
-            canvasHeight = window.innerHeight;
-
-            constellationCanvas.width =
-                canvasWidth * pixelRatio;
-
-            constellationCanvas.height =
-                canvasHeight * pixelRatio;
-
-            constellationCanvas.style.width =
-                canvasWidth + 'px';
-
-            constellationCanvas.style.height =
-                canvasHeight + 'px';
-
-            ctx.setTransform(
-                pixelRatio,
-                0,
-                0,
-                pixelRatio,
-                0,
-                0
-            );
-
-            createParticles();
-        }
-
-        // Membuat partikel konstelasi
-        class ConstellationParticle {
-
-            constructor() {
-
-                this.x = Math.random() * canvasWidth;
-                this.y = Math.random() * canvasHeight;
-
-                this.radius = Math.random() * 1.8 + 0.8;
-
-                this.speedX =
-                    (Math.random() - 0.5) *
-                    particleConfig.speed;
-
-                this.speedY =
-                    (Math.random() - 0.5) *
-                    particleConfig.speed;
-
-                this.opacity =
-                    Math.random() * 0.5 + 0.4;
-            }
-
-            // Menggerakkan partikel
-            update() {
-
-                this.x += this.speedX;
-                this.y += this.speedY;
-
-                // Partikel muncul kembali dari sisi berlawanan
-                if (this.x > canvasWidth) {
-                    this.x = 0;
-                }
-
-                if (this.x < 0) {
-                    this.x = canvasWidth;
-                }
-
-                if (this.y > canvasHeight) {
-                    this.y = 0;
-                }
-
-                if (this.y < 0) {
-                    this.y = canvasHeight;
-                }
-            }
-
-            // Menggambar titik cyan
-            draw() {
-
-                ctx.beginPath();
-
-                ctx.arc(
-                    this.x,
-                    this.y,
-                    this.radius,
-                    0,
-                    Math.PI * 2
-                );
-
-                ctx.fillStyle =
-                    `rgba(${particleConfig.color}, ${this.opacity})`;
-
-                // Tanpa shadowBlur agar rendering lebih ringan
-                ctx.fill();
-            }
-        }
-
-        // Membuat kumpulan partikel
-        function createParticles() {
-
-            particles = [];
-
-            const particleCount =
-                window.innerWidth < 768
-                    ? 35
-                    : particleConfig.count;
-
-            for (let i = 0; i < particleCount; i++) {
-
-                particles.push(
-                    new ConstellationParticle()
-                );
-            }
-        }
-
-        // Menghubungkan partikel yang berdekatan
-        function drawConnections() {
-
-            for (let i = 0; i < particles.length; i++) {
-
-                for (
-                    let j = i + 1;
-                    j < particles.length;
-                    j++
-                ) {
-
-                    const particleA = particles[i];
-                    const particleB = particles[j];
-
-                    const dx =
-                        particleA.x - particleB.x;
-
-                    const dy =
-                        particleA.y - particleB.y;
-
-                    const distanceSquared =
-                        dx * dx + dy * dy;
-
-                    // Hindari akar kuadrat jika partikel terlalu jauh
-                    if (
-                        distanceSquared <
-                        particleConfig.maxDistance *
-                        particleConfig.maxDistance
-                    ) {
-
-                        const distance =
-                            Math.sqrt(distanceSquared);
-
-                        const opacity =
-                            1 -
-                            distance /
-                            particleConfig.maxDistance;
-
-                        ctx.beginPath();
-
-                        ctx.moveTo(
-                            particleA.x,
-                            particleA.y
-                        );
-
-                        ctx.lineTo(
-                            particleB.x,
-                            particleB.y
-                        );
-
-                        ctx.strokeStyle =
-                            `rgba(${particleConfig.color}, ${opacity * 0.35})`;
-
-                        ctx.lineWidth = 0.7;
-
-                        ctx.stroke();
-                    }
-                }
-            }
-        }
-
-        // Animasi utama
-        function animateConstellation() {
-
-            // Hentikan animasi jika tab tidak terlihat
-            if (document.hidden) {
-                animationFrame = null;
-                return;
-            }
-
-            // Frame yang sedang berjalan sudah selesai
-            animationFrame = null;
-
-            ctx.clearRect(
-                0,
-                0,
-                canvasWidth,
-                canvasHeight
-            );
-
-            // Update dan gambar partikel
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
-            });
-
-            // Gambar jaringan konstelasi
-            drawConnections();
-
-            // Jadwalkan frame berikutnya
-            if (!document.hidden) {
-
-                animationFrame =
-                    requestAnimationFrame(
-                        animateConstellation
-                    );
-            }
-        }
-
-        // Menjalankan animasi jika belum berjalan
-        function startConstellationAnimation() {
-
-            if (
-                !document.hidden &&
-                animationFrame === null
-            ) {
-
-                animationFrame =
-                    requestAnimationFrame(
-                        animateConstellation
-                    );
-            }
-        }
-
-        // Menghentikan animasi
-        function stopConstellationAnimation() {
-
-            if (animationFrame !== null) {
-
-                cancelAnimationFrame(
-                    animationFrame
-                );
-
-                animationFrame = null;
-            }
-        }
-
-        // Resize canvas saat ukuran layar berubah
-        window.addEventListener(
-            'resize',
-            resizeConstellationCanvas
-        );
-
-        // Hentikan animasi ketika tab disembunyikan
-        // Jalankan kembali ketika tab dibuka
-        document.addEventListener(
-            'visibilitychange',
-            () => {
-
-                if (document.hidden) {
-
-                    stopConstellationAnimation();
-
-                } else {
-
-                    startConstellationAnimation();
-                }
-            }
-        );
-
-        // Inisialisasi canvas
-        resizeConstellationCanvas();
-
-        // Mulai animasi
-        startConstellationAnimation();
-    }
-
-
-    /* ===================================================
-       1. MODE GELAP PERMANEN
-       =================================================== */
+    /* =========================================
+       1. MODE GELAP
+    ========================================= */
 
     document.body.classList.add('dark-mode');
 
 
-    /* ===================================================
+    /* =========================================
        2. SCROLL REVEAL ANIMATION
-       =================================================== */
+    ========================================= */
 
-    const revealElements =
-        document.querySelectorAll('.reveal');
+    const revealElements = document.querySelectorAll('.reveal');
 
-    const revealOnScroll = () => {
-
+    function revealOnScroll() {
         const windowHeight = window.innerHeight;
-        const revealPoint = 100;
 
-        revealElements.forEach(el => {
+        revealElements.forEach(element => {
+            const revealTop = element.getBoundingClientRect().top;
 
-            const revealTop =
-                el.getBoundingClientRect().top;
-
-            if (
-                revealTop <
-                windowHeight - revealPoint
-            ) {
-
-                el.classList.add('active');
+            if (revealTop < windowHeight - 100) {
+                element.classList.add('active');
             }
         });
-    };
+    }
 
-    window.addEventListener(
-        'scroll',
-        revealOnScroll,
-        { passive: true }
-    );
+    window.addEventListener('scroll', revealOnScroll, {
+        passive: true
+    });
 
     revealOnScroll();
 
 
-    /* ===================================================
-       3. MENU HAMBURGER (MOBILE TOGGLE)
-       =================================================== */
+    /* =========================================
+       3. MENU HAMBURGER
+    ========================================= */
 
-    const hamburger =
-        document.getElementById('hamburger');
-
-    const navMenu =
-        document.getElementById('navMenu');
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
 
     if (hamburger && navMenu) {
 
@@ -363,313 +46,356 @@ document.addEventListener('DOMContentLoaded', () => {
 
             navMenu.classList.toggle('active');
 
-            const icon =
-                hamburger.querySelector('i');
+            const icon = hamburger.querySelector('i');
 
             if (icon) {
-
-                if (
-                    navMenu.classList.contains('active')
-                ) {
-
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-xmark');
-
-                } else {
-
-                    icon.classList.remove('fa-xmark');
-                    icon.classList.add('fa-bars');
-                }
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-xmark');
             }
         });
 
-        document.querySelectorAll('.nav-menu a')
-            .forEach(link => {
+        document.querySelectorAll('.nav-menu a').forEach(link => {
 
-                link.addEventListener('click', () => {
+            link.addEventListener('click', () => {
 
-                    navMenu.classList.remove('active');
+                navMenu.classList.remove('active');
 
-                    const icon =
-                        hamburger.querySelector('i');
+                const icon = hamburger.querySelector('i');
 
-                    if (icon) {
-
-                        icon.classList.remove('fa-xmark');
-                        icon.classList.add('fa-bars');
-                    }
-                });
+                if (icon) {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
             });
+
+        });
     }
 
 
-    /* ===================================================
-       4. FILTER ULASAN SHOPEE
-       =================================================== */
+    /* =========================================
+       4. FILTER ULASAN
+    ========================================= */
 
-    const tagBtns =
-        document.querySelectorAll('.tag-btn');
+    const tagBtns = document.querySelectorAll('.tag-btn');
+    const reviewsContainer = document.getElementById('reviewsContainer');
 
-    const reviewCards =
-        document.querySelectorAll('.shopee-review-card');
+    function updateReviewFilter(filter = 'all') {
+
+        if (!reviewsContainer) return;
+
+        const reviewCards = reviewsContainer.querySelectorAll(
+            '.shopee-review-card'
+        );
+
+        let totalAll = reviewCards.length;
+        let totalPhoto = 0;
+        let totalFiveStar = 0;
+
+        reviewCards.forEach(card => {
+
+            const hasPhoto =
+                card.getAttribute('data-has-photo') === 'true';
+
+            const rating =
+                card.getAttribute('data-rating');
+
+            if (hasPhoto) totalPhoto++;
+            if (rating === '5') totalFiveStar++;
+
+            let show = false;
+
+            if (filter === 'all') {
+                show = true;
+            }
+
+            if (filter === 'photo' && hasPhoto) {
+                show = true;
+            }
+
+            if (filter === '5star' && rating === '5') {
+                show = true;
+            }
+
+            card.style.display = show ? '' : 'none';
+        });
+
+        // Perbarui jumlah ulasan pada tombol
+        tagBtns.forEach(btn => {
+
+            const buttonFilter = btn.getAttribute('data-filter');
+
+            if (buttonFilter === 'all') {
+                btn.textContent = `Semua (${totalAll})`;
+            }
+
+            if (buttonFilter === 'photo') {
+                btn.textContent = `Dengan Foto (${totalPhoto})`;
+            }
+
+            if (buttonFilter === '5star') {
+                btn.textContent = `5 Bintang (${totalFiveStar})`;
+            }
+
+        });
+    }
 
     tagBtns.forEach(btn => {
 
         btn.addEventListener('click', () => {
 
-            tagBtns.forEach(b => {
-                b.classList.remove('active');
+            tagBtns.forEach(button => {
+                button.classList.remove('active');
             });
 
             btn.classList.add('active');
 
-            const filter =
-                btn.getAttribute('data-filter');
+            const filter = btn.getAttribute('data-filter');
 
-            reviewCards.forEach(card => {
-
-                if (filter === 'all') {
-
-                    card.style.display = 'block';
-
-                } else if (
-                    filter === 'photo' &&
-                    card.getAttribute('data-has-photo') === 'true'
-                ) {
-
-                    card.style.display = 'block';
-
-                } else if (
-                    filter === '5star' &&
-                    card.getAttribute('data-rating') === '5'
-                ) {
-
-                    card.style.display = 'block';
-
-                } else {
-
-                    card.style.display = 'none';
-                }
-            });
+            updateReviewFilter(filter);
         });
+
     });
 
 
-    /* ===================================================
-       5. FORM ULASAN MANDIRI ALA SHOPEE
-       =================================================== */
+    /* =========================================
+       5. FORM TAMBAH ULASAN
+    ========================================= */
 
-    const reviewForm =
-        document.getElementById('reviewForm');
+    const reviewForm = document.getElementById('reviewForm');
+    const reviewAlert = document.getElementById('reviewAlert');
 
-    const reviewAlert =
-        document.getElementById('reviewAlert');
-
-    const reviewsContainer =
-        document.getElementById('reviewsContainer');
-
-    if (
-        reviewForm &&
-        reviewAlert &&
-        reviewsContainer
-    ) {
+    if (reviewForm && reviewsContainer && reviewAlert) {
 
         reviewForm.addEventListener('submit', (e) => {
 
             e.preventDefault();
 
-            const name =
-                document.getElementById('reviewName')
-                    .value.trim();
+            const name = document.getElementById('reviewName')
+                .value.trim();
 
-            const product =
-                document.getElementById('reviewProduct')
-                    .value.trim();
+            const product = document.getElementById('reviewProduct')
+                .value.trim();
 
-            const rating =
-                parseInt(
-                    document.getElementById('reviewRating')
-                        .value
-                );
+            const rating = parseInt(
+                document.getElementById('reviewRating').value
+            );
 
-            const productPhoto =
-                document.getElementById('reviewProductPhoto')
-                    .value.trim() ||
-                'https://via.placeholder.com/100x100?text=Foto+Produk';
+            const comment = document.getElementById('reviewComment')
+                .value.trim();
 
-            const comment =
-                document.getElementById('reviewComment')
-                    .value.trim();
+            const photoInput = document.getElementById('reviewProductPhoto');
 
-            let starsHtml = '';
+            const photoUrl = photoInput.value.trim();
 
-            for (let i = 0; i < 5; i++) {
+            // Validasi
+            if (!name || !product || !comment) {
+                showReviewAlert('Semua kolom wajib diisi.', false);
+                return;
+            }
 
-                if (i < rating) {
+            if (rating < 1 || rating > 5 || !Number.isInteger(rating)) {
+                showReviewAlert('Pilihan bintang tidak valid.', false);
+                return;
+            }
 
-                    starsHtml +=
-                        '<i class="fa-solid fa-star"></i>';
+            // Validasi URL foto
+            let validPhotoUrl = '';
 
-                } else {
+            if (photoUrl) {
+                try {
+                    const parsedUrl = new URL(photoUrl);
 
-                    starsHtml +=
-                        '<i class="fa-regular fa-star"></i>';
+                    if (
+                        parsedUrl.protocol === 'https:' ||
+                        parsedUrl.protocol === 'http:'
+                    ) {
+                        validPhotoUrl = parsedUrl.href;
+                    } else {
+                        showReviewAlert('Link foto harus menggunakan HTTP atau HTTPS.', false);
+                        return;
+                    }
+
+                } catch {
+                    showReviewAlert('Link foto tidak valid.', false);
+                    return;
                 }
             }
 
-            const dateStr =
-                new Date().toISOString().split('T')[0];
+            // Tanggal lokal
+            const now = new Date();
 
-            const newReviewCard =
-                document.createElement('div');
+            const dateStr = [
+                now.getFullYear(),
+                String(now.getMonth() + 1).padStart(2, '0'),
+                String(now.getDate()).padStart(2, '0')
+            ].join('-');
 
-            newReviewCard.className =
-                'shopee-review-card';
+            // Membuat elemen ulasan
+            const card = document.createElement('div');
 
-            newReviewCard.setAttribute(
-                'data-rating',
-                rating
-            );
+            card.className = 'shopee-review-card';
 
-            newReviewCard.setAttribute(
+            card.setAttribute('data-rating', rating);
+            card.setAttribute(
                 'data-has-photo',
-                'true'
+                validPhotoUrl ? 'true' : 'false'
             );
 
-            newReviewCard.innerHTML = `
-                <div class="user-meta">
-                    <img
-                        src="https://via.placeholder.com/50?text=User"
-                        class="avatar"
-                        alt="${name}"
-                    >
+            // Bagian identitas
+            const userMeta = document.createElement('div');
+            userMeta.className = 'user-meta';
 
-                    <div>
-                        <h4>${name}</h4>
+            const avatar = document.createElement('img');
+            avatar.src = 'https://via.placeholder.com/50?text=User';
+            avatar.className = 'avatar';
+            avatar.alt = 'Foto pelanggan';
+            avatar.loading = 'lazy';
 
-                        <div class="stars-sm">
-                            ${starsHtml}
-                        </div>
+            const userInfo = document.createElement('div');
 
-                        <span class="review-time">
-                            ${dateStr} | Variasi: ${product}
-                        </span>
-                    </div>
-                </div>
+            const userName = document.createElement('h4');
+            userName.textContent = name;
 
-                <div class="review-body">
-                    <p class="review-text">
-                        ${comment}
-                    </p>
+            const stars = document.createElement('div');
+            stars.className = 'stars-sm';
 
-                    <div class="product-photos">
-                        <div class="photo-item">
-                            <img
-                                src="${productPhoto}"
-                                alt="Foto ${product}"
-                            >
-                        </div>
-                    </div>
-                </div>
-            `;
+            for (let i = 1; i <= 5; i++) {
 
-            reviewsContainer.prepend(
-                newReviewCard
-            );
+                const star = document.createElement('i');
 
-            reviewAlert.textContent =
-                'Ulasan Shopee Anda berhasil dipublikasikan!';
+                star.className = i <= rating
+                    ? 'fa-solid fa-star'
+                    : 'fa-regular fa-star';
 
-            reviewAlert.classList.add('success');
+                stars.appendChild(star);
+            }
+
+            const reviewTime = document.createElement('span');
+            reviewTime.className = 'review-time';
+            reviewTime.textContent =
+                `${dateStr} | Variasi: ${product}`;
+
+            userInfo.append(userName, stars, reviewTime);
+            userMeta.append(avatar, userInfo);
+
+            // Bagian isi ulasan
+            const reviewBody = document.createElement('div');
+            reviewBody.className = 'review-body';
+
+            const reviewText = document.createElement('p');
+            reviewText.className = 'review-text';
+            reviewText.textContent = comment;
+
+            reviewBody.appendChild(reviewText);
+
+            // Foto hanya ditampilkan jika URL tersedia
+            if (validPhotoUrl) {
+
+                const photos = document.createElement('div');
+                photos.className = 'product-photos';
+
+                const photoItem = document.createElement('div');
+                photoItem.className = 'photo-item';
+
+                const photo = document.createElement('img');
+                photo.src = validPhotoUrl;
+                photo.alt = `Foto ${product}`;
+                photo.loading = 'lazy';
+                photo.referrerPolicy = 'no-referrer';
+
+                photoItem.appendChild(photo);
+                photos.appendChild(photoItem);
+                reviewBody.appendChild(photos);
+            }
+
+            card.append(userMeta, reviewBody);
+
+            // Masukkan ulasan baru ke paling atas
+            reviewsContainer.prepend(card);
+
+            // Tampilkan semua ulasan
+            tagBtns.forEach(button => {
+                button.classList.toggle(
+                    'active',
+                    button.getAttribute('data-filter') === 'all'
+                );
+            });
+
+            updateReviewFilter('all');
+
+            showReviewAlert('Ulasan berhasil ditambahkan ke halaman.', true);
 
             reviewForm.reset();
+
         });
     }
 
+    function showReviewAlert(message, success) {
 
-    /* ===================================================
-       6. FORM VALIDATION KONTAK
-       =================================================== */
+        if (!reviewAlert) return;
 
-    const contactForm =
-        document.getElementById('contactForm');
+        reviewAlert.textContent = message;
 
-    const nameInput =
-        document.getElementById('name');
+        reviewAlert.className = success
+            ? 'alert-message success'
+            : 'alert-message error';
+    }
 
-    const phoneInput =
-        document.getElementById('phone');
 
-    const messageInput =
-        document.getElementById('message');
+    /* =========================================
+       6. FORM KONTAK DAN WHATSAPP
+    ========================================= */
 
-    const nameError =
-        document.getElementById('nameError');
+    const contactForm = document.getElementById('contactForm');
 
-    const phoneError =
-        document.getElementById('phoneError');
-
-    const messageError =
-        document.getElementById('messageError');
-
-    const alertMessage =
-        document.getElementById('alertMessage');
-
-    if (
-        contactForm &&
-        nameInput &&
-        phoneInput &&
-        messageInput &&
-        nameError &&
-        phoneError &&
-        messageError &&
-        alertMessage
-    ) {
+    if (contactForm) {
 
         contactForm.addEventListener('submit', (e) => {
 
             e.preventDefault();
 
-            let isValid = true;
+            const name = document.getElementById('name');
+            const phone = document.getElementById('phone');
+            const message = document.getElementById('message');
 
+            const nameError = document.getElementById('nameError');
+            const phoneError = document.getElementById('phoneError');
+            const messageError = document.getElementById('messageError');
+            const alertMessage = document.getElementById('alertMessage');
+
+            if (
+                !name || !phone || !message ||
+                !nameError || !phoneError ||
+                !messageError || !alertMessage
+            ) return;
+
+            // Reset pesan kesalahan
             nameError.textContent = '';
             phoneError.textContent = '';
             messageError.textContent = '';
 
-            alertMessage.className =
-                'alert-message';
-
             alertMessage.textContent = '';
+            alertMessage.className = 'alert-message';
+
+            let isValid = true;
+
+            const nameValue = name.value.trim();
+            const phoneValue = phone.value.trim();
+            const messageValue = message.value.trim();
 
             // Validasi nama
-            if (
-                nameInput.value.trim() === ''
-            ) {
+            if (nameValue.length < 2) {
 
                 nameError.textContent =
-                    'Nama lengkap wajib diisi.';
+                    'Nama minimal 2 karakter.';
 
                 isValid = false;
             }
 
             // Validasi nomor telepon
-            const phoneRegex =
-                /^[0-9+\s-]{9,15}$/;
+            const phoneRegex = /^[0-9+\s-]{9,15}$/;
 
-            if (
-                phoneInput.value.trim() === ''
-            ) {
-
-                phoneError.textContent =
-                    'Nomor HP/WhatsApp wajib diisi.';
-
-                isValid = false;
-
-            } else if (
-                !phoneRegex.test(
-                    phoneInput.value.trim()
-                )
-            ) {
+            if (!phoneRegex.test(phoneValue)) {
 
                 phoneError.textContent =
                     'Format nomor HP tidak valid.';
@@ -678,29 +404,48 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Validasi pesan
-            if (
-                messageInput.value.trim() === ''
-            ) {
+            if (messageValue.length < 3) {
 
                 messageError.textContent =
-                    'Pertanyaan atau pesan tidak boleh kosong.';
+                    'Pesan harus diisi minimal 3 karakter.';
 
                 isValid = false;
             }
 
-            // Jika semua valid
-            if (isValid) {
+            if (!isValid) return;
 
-                alertMessage.textContent =
-                    'Terima kasih! Pesan Anda telah terkirim. Kami akan segera menghubungi Anda.';
+            // Nomor WhatsApp toko
+            const whatsappNumber = '6282141430354';
 
-                alertMessage.classList.add(
-                    'success'
-                );
+            // Susun pesan
+            const whatsappMessage =
+                `Halo Rafif Copy Center,
 
-                contactForm.reset();
-            }
+Nama: ${nameValue}
+Nomor HP: ${phoneValue}
+
+Keperluan:
+${messageValue}`;
+
+            const whatsappUrl =
+                `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+            // Buka WhatsApp
+            window.open(
+                whatsappUrl,
+                '_blank',
+                'noopener,noreferrer'
+            );
+
+            alertMessage.textContent =
+                'WhatsApp berhasil dibuka. Silakan periksa dan kirim pesan Anda di WhatsApp.';
+
+            alertMessage.classList.add('success');
+
+            contactForm.reset();
+
         });
     }
 
 });
+

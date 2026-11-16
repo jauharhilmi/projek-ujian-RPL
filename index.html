@@ -5,39 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rafif Copy Center - Jasa Fotokopi, Printing & Seluler</title>
-    <!-- Google Fonts -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
-    <!-- Global Animasi Background Seluruh Halaman -->
-    <!-- Global Animasi Background Konstelasi Cyan -->
     
-<div class="global-animation-bg">
-    <!-- Lapisan sirkuit teknologi -->
-    <div class="tech-circuit-layer"></div>
 
-    <!-- Lapisan hexagon hologram -->
-    <div class="tech-hex-layer"></div>
-
-    <!-- Lapisan partikel animasi -->
-    <canvas id="constellationCanvas"></canvas>
-</div>
-
-
-    <!-- Header / Navbar Sticky -->
+    <!-- HEADER -->
     <header class="navbar">
         <div class="container nav-container">
+
             <a href="#hero" class="logo">
-                <img src="logo rafif.webp" alt="Logo Rafif Copy Center" class="logo-img"
-                    loding="lazy" decoding="async">
+                <img src="logo rafif.webp"
+                    alt="Logo Rafif Copy Center"
+                    class="logo-img"
+                    loading="lazy"
+                    decoding="async">
+
                 <span>RAFIF <span>COPY CENTER</span></span>
             </a>
 
@@ -51,9 +45,7 @@
                 </ul>
             </nav>
 
-
             <div class="nav-actions">
-                <!-- Tombol menu untuk tampilan HP -->
                 <div class="hamburger" id="hamburger">
                     <i class="fa-solid fa-bars"></i>
                 </div>
@@ -62,14 +54,22 @@
         </div>
     </header>
 
-    <!-- Hero Section dengan Foto Background Transparan Responsif (Desktop & HP) -->
+    <!-- HERO -->
     <section id="hero" class="hero">
         <div class="hero-bg-img"></div>
         <div class="hero-overlay"></div>
+
         <div class="container hero-content reveal">
-            <h1>Solusi Cepat & Berkualitas untuk Semua Keperluan Cetak & Seluler Anda</h1>
-            <p>Rafif Copy Center melayani fotokopi kilat, print dokumen, pengetikan, scan, cetak foto, penjilidan buku,
-                isi ulang pulsa & paket data, kartu perdana, hingga ATK terlengkap di Rejotangan, Tulungagung.</p>
+            <h1>
+                Solusi Cepat & Berkualitas untuk Semua Keperluan Cetak & Seluler Anda
+            </h1>
+
+            <p>
+                Rafif Copy Center melayani fotokopi kilat, print dokumen,
+                pengetikan, scan, cetak foto, penjilidan buku, isi ulang pulsa
+                & paket data, kartu perdana, hingga ATK terlengkap di
+                Rejotangan, Tulungagung.
+            </p>
 
             <div class="hero-buttons">
                 <a href="#contact" class="btn btn-primary">Pesan Sekarang</a>
@@ -78,243 +78,420 @@
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- ABOUT -->
     <section id="about" class="about section-padding">
         <div class="container grid-2 reveal">
+
             <div class="about-image">
-                <img src="text about.webp" alt="Rafif Copy Center" loding="lazy" decoding="async">
+                <img src="text about.webp"
+                    alt="Rafif Copy Center"
+                    loading="lazy"
+                    decoding="async">
             </div>
+
             <div class="about-text">
                 <span class="badge">Tentang Usaha</span>
-                <h2>Mitra Terpercaya Pencetakan, ATK & Layanan Seluler</h2>
-                <p><strong>Rafif Copy Center (Toko Raffif)</strong> adalah penyedia jasa fotokopi, <em>digital
-                        printing</em>, serta pengisian pulsa & paket data yang berlokasi di Jl. Puskesmas, Banjarejo,
-                    Rejotangan, Tulungagung.</p>
-                <p>Kami berkomitmen memberikan hasil cetak yang tajam, presisi, penjilidan rapi, serta transaksi cepat
-                    untuk semua kebutuhan dokumen dan seluler Anda.</p>
 
+                <h2>Mitra Terpercaya Pencetakan, ATK & Layanan Seluler</h2>
+
+                <p>
+                    <strong>Rafif Copy Center (Toko Raffif)</strong>
+                    adalah penyedia jasa fotokopi, <em>digital printing</em>,
+                    serta pengisian pulsa & paket data yang berlokasi di
+                    Jl. Puskesmas, Banjarejo, Rejotangan, Tulungagung.
+                </p>
+
+                <p>
+                    Kami berkomitmen memberikan hasil cetak yang tajam,
+                    presisi, penjilidan rapi, serta transaksi cepat untuk
+                    semua kebutuhan dokumen dan seluler Anda.
+                </p>
             </div>
+
         </div>
     </section>
 
-    <!-- Services / Products Section -->
+    <!-- SERVICES -->
     <section id="services" class="services section-padding">
         <div class="container">
+
             <div class="section-title reveal">
                 <h2>Layanan & Produk Kami</h2>
-                <p p style="color: #9bdbf8;">Berbagai pilihan solusi cetak, penjilidan, produk seluler, dan ATK lengkap
-                    dengan harga terjangkau</p>
+
+                <p style="color: #9bdbf8;">
+                    Berbagai pilihan solusi cetak, penjilidan, produk seluler,
+                    dan ATK lengkap dengan harga terjangkau
+                </p>
             </div>
+
             <div class="services-grid">
-                <!-- Item 1: Fotokopi -->
+
+                <!-- LAYANAN 1 -->
                 <div class="card-service reveal">
                     <div class="card-img">
-                        <img src="gambar printer.jpg" alt="Fotokopi & Print Dokumen" loding="lazy" decoding="async">
+                        <img src="gambar printer.jpg"
+                            alt="Fotokopi dan Print Dokumen"
+                            loading="lazy"
+                            decoding="async">
                     </div>
+
                     <div class="card-body">
-                        <div class="icon-box"><i class="fa-solid fa-copy"></i></div>
+                        <div class="icon-box">
+                            <i class="fa-solid fa-copy"></i>
+                        </div>
+
                         <h3>Fotokopi & Print Dokumen</h3>
-                        <p>Cetak dokumen hitam-putih dan warna dengan mesin berteknologi tinggi untuk hasil tajam dan
-                            cepat.</p>
+
+                        <p>
+                            Cetak dokumen hitam-putih dan warna dengan mesin
+                            berteknologi tinggi untuk hasil tajam dan cepat.
+                        </p>
                     </div>
                 </div>
 
-                <!-- Item 2: Penjilidan Buku -->
+                <!-- LAYANAN 2 -->
                 <div class="card-service reveal">
                     <div class="card-img">
-                        <img src="gambar buku di jilid.jpg" alt="Penjilidan Buku"
-                            loding="lazy" decoding="async">
+                        <img src="gambar buku di jilid.jpg"
+                            alt="Penjilidan Buku"
+                            loading="lazy"
+                            decoding="async">
                     </div>
+
                     <div class="card-body">
-                        <div class="icon-box"><i class="fa-solid fa-book"></i></div>
+                        <div class="icon-box">
+                            <i class="fa-solid fa-book"></i>
+                        </div>
+
                         <h3>Penjilidan Buku</h3>
-                        <p>Layanan jilid buku, skripsi, dan laporan dengan opsi jilid lakban, mika, spiral, hingga
-                            <em>hardcover</em>.</p>
+
+                        <p>
+                            Layanan jilid buku, skripsi, dan laporan dengan
+                            opsi jilid lakban, mika, spiral, hingga
+                            <em>hardcover</em>.
+                        </p>
                     </div>
                 </div>
 
-                <!-- Item 3: Pulsa & Paket Data -->
+                <!-- LAYANAN 3 -->
                 <div class="card-service reveal">
                     <div class="card-img">
-                        <img src="gambar provider indo.jpeg" alt="Isi Pulsa & Paket Data"
-                            loding="lazy" decoding="async">
+                        <img src="gambar provider indo.jpeg"
+                            alt="Isi Pulsa dan Paket Data"
+                            loading="lazy"
+                            decoding="async">
                     </div>
+
                     <div class="card-body">
-                        <div class="icon-box"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                        <div class="icon-box">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                        </div>
+
                         <h3>Isi Pulsa & Paket Data</h3>
-                        <p>Pengisian ulang pulsa reguler dan paket data kuota internet cepat untuk semua operator
-                            seluler.</p>
+
+                        <p>
+                            Pengisian ulang pulsa reguler dan paket data
+                            kuota internet cepat untuk semua operator seluler.
+                        </p>
                     </div>
                 </div>
 
-                <!-- Item 4: Kartu Perdana -->
+                <!-- LAYANAN 4 -->
                 <div class="card-service reveal">
                     <div class="card-img">
-                        <img src="gambar kartu perdana.webp" alt="Kartu Perdana"
-                            loding="lazy" decoding="async">
+                        <img src="gambar kartu perdana.webp"
+                            alt="Kartu Perdana"
+                            loading="lazy"
+                            decoding="async">
                     </div>
+
                     <div class="card-body">
-                        <div class="icon-box"><i class="fa-solid fa-sim-card"></i></div>
+                        <div class="icon-box">
+                            <i class="fa-solid fa-sim-card"></i>
+                        </div>
+
                         <h3>Kartu Perdana Operator</h3>
-                        <p>Menyediakan berbagai kartu perdana internet murah dan nomor pilihan untuk Telkomsel, Indosat,
-                            XL, Tri, Smartfren, dll.</p>
+
+                        <p>
+                            Menyediakan berbagai kartu perdana internet murah
+                            dan nomor pilihan untuk Telkomsel, Indosat, XL,
+                            Tri, Smartfren, dll.
+                        </p>
                     </div>
                 </div>
 
-                <!-- Item 5: Pengetikan & Scan -->
+                <!-- LAYANAN 5 -->
                 <div class="card-service reveal">
                     <div class="card-img">
-                        <img src="pengetikan.jpg" alt="Pengetikan & Scan Dokumen"
-                            loding="lazy" decoding="async">
+                        <img src="pengetikan.jpg"
+                            alt="Pengetikan dan Scan Dokumen"
+                            loading="lazy"
+                            decoding="async">
                     </div>
+
                     <div class="card-body">
-                        <div class="icon-box"><i class="fa-solid fa-keyboard"></i></div>
+                        <div class="icon-box">
+                            <i class="fa-solid fa-keyboard"></i>
+                        </div>
+
                         <h3>Pengetikan & Scan Dokumen</h3>
-                        <p>Jasa ketik rapi sesuai format standar serta pengubahan dokumen fisik menjadi file digital
-                            (PDF/JPG).</p>
+
+                        <p>
+                            Jasa ketik rapi sesuai format standar serta
+                            pengubahan dokumen fisik menjadi file digital
+                            (PDF/JPG).
+                        </p>
                     </div>
                 </div>
 
-                <!-- Item 6: Cetak Foto & ATK -->
+                <!-- LAYANAN 6 -->
                 <div class="card-service reveal">
                     <div class="card-img">
-                        <img src="ATK.jpg" alt="Cetak Foto & ATK"
-                            loding="lazy" decoding="async">
+                        <img src="ATK.jpg"
+                            alt="Produk Gas Elpiji"
+                            loading="lazy"
+                            decoding="async">
                     </div>
+
                     <div class="card-body">
-                        <div class="icon-box"><i class="fa-solid fa-pen-ruler"></i></div>
-                        <h3>Cetak Foto & ATK</h3>
-                        <p>Cetak pas foto berbagai ukuran serta penjualan beragam alat tulis kantor dan sekolah
-                            terlengkap.</p>
+                        <div class="icon-box">
+                            <i class="fa-solid fa-pen-ruler"></i>
+                        </div>
+
+                        <h3>Agen Gas Elpiji</h3>
+
+                        <p>
+                            Penjualan gas elpiji berkualitas dengan harga
+                            kompetitif dan layanan pengiriman yang cepat.
+                        </p>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Ulasan Pelanggan Gaya Shopee -->
+    <!-- ULASAN -->
     <section id="testimonials" class="testimonials section-padding">
         <div class="container">
+
             <div class="section-title reveal">
-                <h2>Ulasan Pembeli </h2>
-                <p>Ulasan jujur pembeli lengkap dengan foto barang/produk yang dibeli</p>
+                <h2>Ulasan Pembeli</h2>
+                <p>Ulasan pembeli lengkap dengan foto barang atau produk yang dibeli</p>
             </div>
 
             <div class="shopee-summary reveal">
+
                 <div class="rating-big">
                     <span class="score">5.0</span>
                     <span class="out-of">dari 5</span>
+
                     <div class="stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
                     </div>
                 </div>
+
                 <div class="filter-tags">
-                    <button class="tag-btn active" data-filter="all">Semua (3)</button>
-                    <button class="tag-btn" data-filter="photo">Dengan Foto (3)</button>
-                    <button class="tag-btn" data-filter="5star">5 Bintang (3)</button>
+                    <button class="tag-btn active" data-filter="all">
+                        Semua (3)
+                    </button>
+
+                    <button class="tag-btn" data-filter="photo">
+                        Dengan Foto (3)
+                    </button>
+
+                    <button class="tag-btn" data-filter="5star">
+                        5 Bintang (3)
+                    </button>
                 </div>
+
             </div>
 
-            <!-- List Ulasan -->
+            <!-- DAFTAR ULASAN -->
             <div class="reviews-list reveal" id="reviewsContainer">
-                <div class="shopee-review-card" data-rating="5" data-has-photo="true">
+
+                <div class="shopee-review-card"
+                    data-rating="5"
+                    data-has-photo="true">
+
                     <div class="user-meta">
-                        <img src="roy-suryo-scaled.webp" class="avatar" alt="foto roy suryo"
-                            loding="lazy" decoding="async">
+                        <img src="roy-suryo-scaled.webp"
+                            class="avatar"
+                            alt="Foto pelanggan"
+                            loading="lazy"
+                            decoding="async">
+
                         <div>
                             <h4>Roy suryo</h4>
+
                             <div class="stars-sm">
-                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                    class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
                             </div>
-                            <span class="review-time">2026-03-28 | Variasi: Print dokumen </span>
+
+                            <span class="review-time">
+                                2026-03-28 | Variasi: Print dokumen
+                            </span>
                         </div>
                     </div>
+
                     <div class="review-body">
-                        <p class="review-text">Hasil print untuk pemalsuan rapi terdapat tanda air.</p>
+                        <p class="review-text">
+                            Hasil print rapi dan terdapat tanda air.
+                        </p>
+
                         <div class="product-photos">
                             <div class="photo-item">
-                                <img src="ijazah jokowi.jpg" alt="Foto Skripsi"
-                                    loding="lazy" decoding="async">
+                                <img src="ijazah jokowi.jpg"
+                                    alt="Foto hasil cetak"
+                                    loading="lazy"
+                                    decoding="async">
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="shopee-review-card" data-rating="5" data-has-photo="true">
+                <div class="shopee-review-card"
+                    data-rating="5"
+                    data-has-photo="true">
+
                     <div class="user-meta">
-                        <img src="kapid fixx.webp" class="avatar" alt="AL chafid"
-                            loding="lazy" decoding="async">
+                        <img src="kapid fixx.webp"
+                            class="avatar"
+                            alt="Foto pelanggan"
+                            loading="lazy"
+                            decoding="async">
+
                         <div>
-                            <h4>al chafid</h4>
+                            <h4>Al Chafid</h4>
+
                             <div class="stars-sm">
-                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                    class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
                             </div>
-                            <span class="review-time">2026-03-25 | Variasi: Alat Tulis Kantor</span>
+
+                            <span class="review-time">
+                                2026-03-25 | Variasi: Alat Tulis Kantor
+                            </span>
                         </div>
                     </div>
+
                     <div class="review-body">
-                        <p class="review-text">pernah beli ATK di sini pilihannya lengkap dengan harga terjangkau.</p>
+                        <p class="review-text">
+                            Pernah beli ATK di sini, pilihannya lengkap
+                            dengan harga terjangkau.
+                        </p>
+
                         <div class="product-photos">
                             <div class="photo-item">
-                                <img src="ATK pada ulasan.webp" alt="Foto Perdana"
-                                    loding="lazy" decoding="async">
+                                <img src="ATK pada ulasan.webp"
+                                    alt="Foto alat tulis kantor"
+                                    loading="lazy"
+                                    decoding="async">
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="shopee-review-card" data-rating="5" data-has-photo="true">
+                <div class="shopee-review-card"
+                    data-rating="5"
+                    data-has-photo="true">
+
                     <div class="user-meta">
-                        <img src="pp seto.jpg" class="avatar" alt="seto banyuaji"
-                            loding="lazy" decoding="async">
+                        <img src="pp seto.jpg"
+                            class="avatar"
+                            alt="Foto pelanggan"
+                            loading="lazy"
+                            decoding="async">
+
                         <div>
                             <h4>Seto Banyuaji</h4>
+
                             <div class="stars-sm">
-                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                    class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
                             </div>
-                            <span class="review-time">2026-03-20 | Variasi: Cetak Foto & Frame A4</span>
+
+                            <span class="review-time">
+                                2026-03-20 | Variasi: Cetak Foto & Frame A4
+                            </span>
                         </div>
                     </div>
+
                     <div class="review-body">
-                        <p class="review-text">Cetak foto warnanya tajam dan bagus banget kelihatannya. Kertas fotonya
-                            tebal premium. JOSJIS Toko Raffif!</p>
+                        <p class="review-text">
+                            Cetak foto warnanya tajam dan bagus banget.
+                            Kertas fotonya tebal premium.
+                        </p>
+
                         <div class="product-photos">
                             <div class="photo-item">
-                                <img src="foto seto.webp" alt="Foto Hasil Cetak"
-                                    loding="lazy" decoding="async">
+                                <img src="foto seto.webp"
+                                    alt="Foto hasil cetak"
+                                    loading="lazy"
+                                    decoding="async">
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
 
-            <!-- Form Tambah Ulasan Mandiri ala Shopee -->
+            <!-- FORM TAMBAH ULASAN -->
             <div class="review-form-wrapper reveal">
-                <h3><i class="fa-solid fa-pen-to-square"></i> Beri Ulasan Produk Anda</h3>
+
+                <h3>
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    Beri Ulasan Produk Anda
+                </h3>
+
                 <form id="reviewForm" class="review-form">
+
                     <div id="reviewAlert" class="alert-message"></div>
+
                     <div class="form-row">
+
                         <div class="form-group">
                             <label for="reviewName">Nama Pembeli *</label>
-                            <input type="text" id="reviewName" placeholder="Nama Anda" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="reviewProduct">Nama Produk / Layanan yang Dibeli *</label>
-                            <input type="text" id="reviewProduct" placeholder="Contoh: Jilid Buku, Cetak Foto, Pulsa"
+                            <input type="text"
+                                id="reviewName"
+                                placeholder="Nama Anda"
+                                maxlength="80"
                                 required>
                         </div>
+
+                        <div class="form-group">
+                            <label for="reviewProduct">
+                                Nama Produk / Layanan yang Dibeli *
+                            </label>
+
+                            <input type="text"
+                                id="reviewProduct"
+                                placeholder="Contoh: Jilid Buku, Cetak Foto, Pulsa"
+                                maxlength="100"
+                                required>
+                        </div>
+
                     </div>
+
                     <div class="form-row">
+
                         <div class="form-group">
                             <label for="reviewRating">Nilai Bintang *</label>
+
                             <select id="reviewRating" required>
                                 <option value="5">⭐⭐⭐⭐⭐ (5 Stars)</option>
                                 <option value="4">⭐⭐⭐⭐ (4 Stars)</option>
@@ -323,119 +500,207 @@
                                 <option value="1">⭐ (1 Star)</option>
                             </select>
                         </div>
+
                         <div class="form-group">
-                            <label for="reviewProductPhoto">URL / Link Foto Barang yang Dibeli</label>
-                            <input type="text" id="reviewProductPhoto" placeholder="Masukkan URL Foto Barang/Produk">
+                            <label for="reviewProductPhoto">
+                                URL / Link Foto Barang
+                            </label>
+
+                            <input type="url"
+                                id="reviewProductPhoto"
+                                placeholder="https://contoh.com/foto.jpg">
                         </div>
+
                     </div>
+
                     <div class="form-group">
                         <label for="reviewComment">Ulasan Anda *</label>
-                        <textarea id="reviewComment" rows="3" placeholder="Tuliskan ulasan pengalaman Anda..."
+
+                        <textarea id="reviewComment"
+                            rows="3"
+                            placeholder="Tuliskan ulasan pengalaman Anda..."
+                            maxlength="1000"
                             required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Kirim Ulasan
-                        Shopee</button>
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        Kirim Ulasan
+                    </button>
+
                 </form>
             </div>
 
         </div>
     </section>
 
-    <!-- Form Kontak Section -->
+    <!-- KONTAK -->
     <section id="contact" class="contact section-padding">
         <div class="container">
+
             <div class="section-title reveal">
                 <h2>Hubungi Kami</h2>
-                <p p style="color: #9bdbf8;">Kirimkan pertanyaan atau pesan langsung melalui formulir di bawah ini</p>
+
+                <p style="color: #9bdbf8;">
+                    Kirimkan pertanyaan atau pesan langsung melalui formulir
+                    di bawah ini
+                </p>
             </div>
+
             <div class="contact-wrapper reveal">
+
                 <form id="contactForm" class="contact-form" novalidate>
+
                     <div id="alertMessage" class="alert-message"></div>
+
                     <div class="form-group">
                         <label for="name">Nama Lengkap *</label>
-                        <input type="text" id="name" name="name" placeholder="Masukkan nama Anda">
+
+                        <input type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Masukkan nama Anda"
+                            maxlength="80"
+                            required>
+
                         <small class="error-text" id="nameError"></small>
                     </div>
+
                     <div class="form-group">
                         <label for="phone">Nomor HP / WhatsApp *</label>
-                        <input type="tel" id="phone" name="phone" placeholder="Contoh: 082141430354">
+
+                        <input type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="Contoh: 082141430354"
+                            maxlength="15"
+                            required>
+
                         <small class="error-text" id="phoneError"></small>
                     </div>
+
                     <div class="form-group">
                         <label for="message">Pertanyaan / Keperluan *</label>
-                        <textarea id="message" name="message" rows="5"
-                            placeholder="Tuliskan pertanyaan atau kebutuhan cetak/pulsa Anda di sini..."></textarea>
+
+                        <textarea id="message"
+                            name="message"
+                            rows="5"
+                            placeholder="Tuliskan pertanyaan atau kebutuhan Anda..."
+                            maxlength="1000"
+                            required></textarea>
+
                         <small class="error-text" id="messageError"></small>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">Kirim Pesan</button>
+
+                    <button type="submit" class="btn btn-primary btn-block">
+                        Kirim Pesan
+                    </button>
+
                 </form>
             </div>
+
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer class="footer">
+
         <div class="container grid-footer">
+
             <div class="footer-info">
                 <h3>RAFIF COPY CENTER</h3>
-                <p>Pusat Fotokopi, Digital Printing, Penjilidan Buku, Isi Pulsa & Paket Data, Kartu Perdana, dan ATK
-                    Terpercaya di Tulungagung.</p>
 
+                <p>
+                    Pusat Fotokopi, Digital Printing, Penjilidan Buku,
+                    Isi Pulsa & Paket Data, Kartu Perdana, dan ATK
+                    Terpercaya di Tulungagung.
+                </p>
             </div>
 
             <div class="footer-contact">
-                <h4>Informasi & Akses Kontak Direct</h4>
-                <p><i class="fa-solid fa-location-dot"></i> Jl. Puskesmas - Banjarejo - Rejotangan - Tulungagung</p>
+
+                <h4>Informasi & Akses Kontak</h4>
+
+                <p>
+                    <i class="fa-solid fa-location-dot"></i>
+                    Jl. Puskesmas - Banjarejo - Rejotangan - Tulungagung
+                </p>
 
                 <div class="direct-buttons">
-                    <a href="tel:+6282141430354" class="btn-app btn-phone">
-                        <i class="fa-solid fa-phone"></i> Hubungi via telepon
+
+                    <a href="tel:+6282141430354"
+                        class="btn-app btn-phone">
+                        <i class="fa-solid fa-phone"></i>
+                        Hubungi via telepon
                     </a>
-                    <a href="https://wa.me/6282141430354" target="_blank" class="btn-app btn-whatsapp">
-                        <i class="fa-brands fa-whatsapp"></i> hubungi via whatsapp
+
+                    <a href="https://wa.me/6282141430354"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn-app btn-whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        Hubungi via WhatsApp
                     </a>
-                    <a href="mailto:banjarejocopy@gmail.com" target="_blank" class="btn-app btn-email">
-                        <i class="fa-solid fa-envelope"></i> Kirim pesan ke email
+
+                    <a href="mailto:banjarejocopy@gmail.com"
+                        class="btn-app btn-email">
+                        <i class="fa-solid fa-envelope"></i>
+                        Kirim pesan ke email
                     </a>
+
                 </div>
             </div>
 
             <div class="footer-social">
+
                 <h4>Aplikasi Peta Lokasi</h4>
-                <p class="footer-desc">Klik tombol di bawah ini untuk langsung diarahkan ke peta navigasi Google Maps
-                    toko kami:</p>
 
+                <p class="footer-desc">
+                    Klik tombol di bawah ini untuk langsung diarahkan
+                    ke peta navigasi Google Maps toko kami.
+                </p>
 
-                <!-- Container iFrame Google Maps Responsif -->
                 <div class="map-container">
+
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d505558.62073548243!2d111.47979107343748!3d-8.134356099999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78e8a3009b3057%3A0x3528f3b4f805cfe2!2sToko%20Raffif!5e0!3m2!1sid!2sid!4v1794055011048!5m2!1sid!2sid"
-                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="strict-origin-when-cross-origin">
-                        allowfullscreen=""
+                        width="600"
+                        height="450"
+                        style="border:0;"
+                        allowfullscreen
                         loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"
-                        title="lokasi toko rafif">
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        title="Lokasi Rafif Copy Center">
                     </iframe>
+
                 </div>
 
-                <!-- Tombol Akses Peta Langsung -->
                 <div class="map-link" style="margin-top: 15px;">
-                    <a href="https://maps.app.goo.gl/7Cc1uGv87H3cJRnKA" target="_blank" class="btn-app btn-maps">
-                        <i class="fa-solid fa-map-location-dot"></i> Buka di Aplikasi Google Maps
+
+                    <a href="https://maps.app.goo.gl/7Cc1uGv87H3cJRnKA"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn-app btn-maps">
+
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        Buka di Aplikasi Google Maps
+
                     </a>
+
                 </div>
             </div>
+
         </div>
-        </div>
+
         <div class="footer-bottom">
             <div class="container">
                 <p>&copy; 2026 Rafif Copy Center. All Rights Reserved.</p>
             </div>
         </div>
+
     </footer>
 
-    <script src="script.js"></script>
-</body>
+    <script src="script.js" defer></script>
 
+</body>
 </html>
