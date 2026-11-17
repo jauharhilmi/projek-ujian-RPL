@@ -2,6 +2,157 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     /* =========================================
+       BACKGROUND TECHNOLOGY PARTICLE NETWORK
+    ========================================= */
+
+    const canvas = document.getElementById('constellationCanvas');
+    const ctx = canvas?.getContext('2d');
+
+    if (canvas && ctx) {
+        let particles = [];
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+        let animationFrame;
+        let lastFrame = 0;
+
+        const particleCount = Math.min(
+            220,
+            Math.floor((width * height) / 5000)
+        );
+
+        const connectionDistance = 180;
+        const speed = 0.65;
+
+        function resizeCanvas() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+            canvas.width = width * dpr;
+            canvas.height = height * dpr;
+
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+            particles = [];
+
+            const count = Math.min(
+                220,
+                Math.floor((width * height) / 5000)
+            );
+
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * speed,
+                    vy: (Math.random() - 0.5) * speed,
+                    radius: Math.random() * 2 + 1
+                });
+            }
+        }
+
+        function drawParticles() {
+            ctx.clearRect(0, 0, width, height);
+
+            // Gambar titik
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                // Pantulan pada batas layar
+                if (p.x < 0 || p.x > width) p.vx *= -1;
+                if (p.y < 0 || p.y > height) p.vy *= -1;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius *1.3, 0, Math.PI * 2);
+
+                ctx.fillStyle = '#38bdf8';
+                ctx.shadowBlur = 12;
+                ctx.shadowColor = '#38bdf8';
+                ctx.fill();
+
+                ctx.shadowBlur = 0;
+            });
+
+            // Hubungkan titik yang berdekatan
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < connectionDistance) {
+                        const opacity = 1 - distance / connectionDistance;
+
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+
+                        ctx.strokeStyle =
+                            `rgba(56, 189, 248, ${opacity * 0.35})`;
+
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate(timestamp) {
+            if (document.hidden) {
+                animationFrame = null;
+                return;
+            }
+
+            // Batasi animasi sekitar 30 FPS
+            if (timestamp - lastFrame >= 33) {
+                drawParticles();
+                lastFrame = timestamp;
+            }
+
+            animationFrame = requestAnimationFrame(animate);
+        }
+
+        function startAnimation() {
+            if (
+                window.matchMedia('(prefers-reduced-motion: reduce)').matches
+            ) {
+                drawParticles();
+                return;
+            }
+
+            if (!animationFrame) {
+                animationFrame = requestAnimationFrame(animate);
+            }
+        }
+
+        function stopAnimation() {
+            if (animationFrame) {
+                cancelAnimationFrame(animationFrame);
+                animationFrame = null;
+            }
+        }
+
+        resizeCanvas();
+        startAnimation();
+
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            lastFrame = 0;
+        });
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                stopAnimation();
+            } else {
+                startAnimation();
+            }
+        });
+    }
+
+
+    /* =========================================
        1. MODE GELAP
     ========================================= */
 
